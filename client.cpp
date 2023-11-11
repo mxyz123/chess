@@ -12,10 +12,11 @@ int main()
     chess.show();
     std::cout << std::endl << "Press ESC to exit..." << std::endl;
     cmd.setKeyEventFunction([&cmd](){
-        std::cout << cmd.getLastKeyPress() << std::endl;
+        //std::cout << cmd.getLastKeyPress() << std::endl;
     });
-    cmd.setMouseEventFunction([&cmd](){
-        std::cout << "Mouse L x:" << cmd.getLastLMousePressX() << " y:" << cmd.getLastLMousePressY() << std::endl;
+    cmd.setMouseEventFunction([&cmd, &chess](){
+        //std::cout << "Mouse L x:" << cmd.getLastLMousePressX() << " y:" << cmd.getLastLMousePressY() << std::endl;
+        std:: cout << chess.get(cmd.getLastLMousePressX() / 3, cmd.getLastLMousePressY()) << std::endl;
     });
     cmd.startListening();
     bool rn = true;

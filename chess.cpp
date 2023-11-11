@@ -13,7 +13,25 @@
     21 - 26 -> hrac1
 */
 
-Chess::Chess(Konsole* k)
+void Chess::printPiece(std::string piece, int x, int y, int color1, int color2)
+{
+    this->k->resetAttribute();
+                this->k->print("[");
+                if((x % 2 == 0 && y % 2 == 0) || (x % 2 != 0 && y % 2 != 0))
+                {
+                    this->k->setAttribute(color1);
+                    this->k->print(piece);
+                } 
+                else 
+                {
+                    this->k->setAttribute(color2);
+                    this->k->print(piece);
+                }
+                this->k->resetAttribute();
+                this->k->print("]");
+}
+
+Chess::Chess(Konsole *k)
 {
     this->k = k;
 
@@ -77,228 +95,46 @@ void Chess::show()
             switch (this->board[i][j])
             {
             case 0:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(255);
-                    this->k->print(" ");
-                } 
-                else 
-                {
-                    this->k->setAttribute(0);
-                    this->k->print(" ");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece(" ", i, j, 255, 0);
                 break;
             case 11:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("p");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("p");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("p", i, j, 252, 12);
                 break;
             case 12:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("v");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("v");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("v", i, j, 252, 12);
                 break;
             case 13:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("k");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("k");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("k", i, j, 252, 12);
                 break;
             case 14:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("s");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("s");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("s", i, j, 252, 12);
                 break;
             case 15:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("K");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("K");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("K", i, j, 252, 12);
                 break;
             case 16:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(252);
-                    this->k->print("Q");
-                } 
-                else 
-                {
-                    this->k->setAttribute(12);
-                    this->k->print("Q");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("Q", i, j, 252, 12);
                 break;
             case 21:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("p");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("p");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("p", i, j, 250, 10);
                 break;
             case 22:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("v");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("v");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("v", i, j, 250, 10);
                 break;
             case 23:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("k");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("k");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("k", i, j, 250, 10);
                 break;
             case 24:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("s");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("s");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("s", i, j, 250, 10);
                 break;
             case 25:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("K");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("K");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("K", i, j, 250, 10);
                 break;
             case 26:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(250);
-                    this->k->print("Q");
-                } 
-                else 
-                {
-                    this->k->setAttribute(10);
-                    this->k->print("Q");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece("Q", i, j, 250, 10);
                 break;
             default:
-                this->k->resetAttribute();
-                this->k->print("[");
-                if((i % 2 == 0 && j % 2 == 0) || (i % 2 != 0 && j % 2 != 0))
-                {
-                    this->k->setAttribute(255);
-                    this->k->print(" ");
-                } 
-                else 
-                {
-                    this->k->setAttribute(0);
-                    this->k->print(" ");
-                }
-                this->k->resetAttribute();
-                this->k->print("]");
+                this->printPiece(" ", i, j, 250, 10);
                 break;
             }
         }
@@ -309,10 +145,10 @@ void Chess::show()
 
 int Chess::get(int x, int y)
 {
-    return this->board[x][y];
+    return this->board[y][x];
 }
 
 void Chess::set(int x, int y, int val)
 {
-    this->board[x][y] = val;
+    this->board[y][x] = val;
 }

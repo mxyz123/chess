@@ -84,13 +84,11 @@ void Konsole::stopListening()
 
 void Konsole::print(std::string text)
 {
-    SetConsoleTextAttribute(this->output, this->k);
     std::cout << text;
 }
 
 void Konsole::println(std::string text)
 {
-    SetConsoleTextAttribute(this->output, this->k);
     std::cout << text << std::endl;
 }
 
