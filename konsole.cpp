@@ -9,6 +9,8 @@ Konsole::Konsole()
     this->resetAttribute();
     this->listening = false;
     SetConsoleMode(this->input, ENABLE_EXTENDED_FLAGS | ENABLE_PROCESSED_INPUT | ENABLE_MOUSE_INPUT);
+    this->keyEventFunction = []{};
+    this->mouseEventFunction = []{};
 }
 
 Konsole::~Konsole()
@@ -30,14 +32,14 @@ void Konsole::process()
         {
         case KEY_EVENT:
             this->lastKeyPress = this->inputRecord.Event.KeyEvent.wVirtualKeyCode;
-            std::cout << "Key:" << this->lastKeyPress << std::endl;
+            this->keyEventFunction();
             break;
         case MOUSE_EVENT:
             if(this->inputRecord.Event.MouseEvent.dwButtonState == FROM_LEFT_1ST_BUTTON_PRESSED)
             {
                 this->coord.X = inputRecord.Event.MouseEvent.dwMousePosition.X;
                 this->coord.Y = inputRecord.Event.MouseEvent.dwMousePosition.Y;
-                std::cout << "Mouse L press x:" << this->coord.X << " y:" << this->coord.Y << std::endl;
+                this->mouseEventFunction();
             }
             break;
         default:
@@ -90,4 +92,14 @@ void Konsole::println(std::string text)
 {
     SetConsoleTextAttribute(this->output, this->k);
     std::cout << text << std::endl;
+}
+
+void Konsole::setKeyEventFunction(std::function<void()>  fn)
+{
+    this->keyEventFunction = fn;
+}
+
+void Konsole::setMouseEventFunction(std::function<void()>  fn)
+{
+    this->mouseEventFunction = fn;
 }

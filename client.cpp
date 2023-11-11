@@ -11,6 +11,12 @@ int main()
     Chess chess = Chess(&cmd);
     chess.show();
     std::cout << std::endl << "Press ESC to exit..." << std::endl;
+    cmd.setKeyEventFunction([&cmd](){
+        std::cout << cmd.getLastKeyPress() << std::endl;
+    });
+    cmd.setMouseEventFunction([&cmd](){
+        std::cout << "Mouse L x:" << cmd.getLastLMousePressX() << " y:" << cmd.getLastLMousePressY() << std::endl;
+    });
     cmd.startListening();
     bool rn = true;
     while (rn) {
